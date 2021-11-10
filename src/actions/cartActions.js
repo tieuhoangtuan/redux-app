@@ -18,3 +18,22 @@ export const addToCart = (product) => {
     }
   };
 };
+
+export const deleteProduct = (productId) => {
+  return async (dispatch) => {
+    dispatch({
+      type: cartConstants.DELETE_PRODUCT_REQUEST,
+    });
+
+    if (productId) {
+      dispatch({
+        type: cartConstants.DELETE_PRODUCT_SUCCESS,
+        payload: productId,
+      });
+    } else {
+      dispatch({
+        type: cartConstants.DELETE_PRODUCT_FAILURE,
+      });
+    }
+  };
+};

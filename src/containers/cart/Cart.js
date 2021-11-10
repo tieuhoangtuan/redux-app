@@ -11,18 +11,31 @@ function Cart() {
   console.log(cart);
   return (
     <>
-      {cart._products.map((product) => {
-        return (
-          <SingleCart
-            key={`${product.id}`}
-            name={`${product.name}`}
-            price={`${product.price}`}
-            description={`${product.description}`}
-            img={`${product.img}`}
-            id={`${product.id}`}
-          />
-        );
-      })}
+      <div
+        style={{
+          width: "100%",
+        }}
+      >
+        {cart._products.map((product) => {
+          return (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-around",
+              }}
+            >
+              <SingleCart
+                key={`${product.id}`}
+                name={`${product.name}`}
+                price={`${product.price}`}
+                description={`${product.description}`}
+                img={`${product.img}`}
+                id={`${product.id}`}
+              />
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 }

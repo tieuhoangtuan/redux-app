@@ -1,12 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import { alpha } from "@mui/material/styles";
-import {
-  useDispatch,
-  useSelector,
-} from "react-redux";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import { addToCart } from "../actions/cartActions";
+import { useDispatch } from "react-redux";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { deleteProduct } from "../actions/cartActions";
 
 export default function SingleProduct({
   name,
@@ -15,14 +12,13 @@ export default function SingleProduct({
   description,
   id,
 }) {
-  const products = useSelector(
-    (state) => state.products,
-  );
-
   const dispatch = useDispatch();
-
+  const clickHandle = (productId) => {
+    dispatch(deleteProduct(productId));
+  };
   return (
     <Box
+      style={{ margin: "24px" }}
       sx={{
         display: "flex",
         flexDirection: {
@@ -76,9 +72,11 @@ export default function SingleProduct({
           ${price}
         </Box>
         <Box
+          onClick={clickHandle.bind(this, id)}
+          style={{ color: "red" }}
           sx={{
             mt: 1.5,
-            p: 0.5,
+            p: 1.5,
             backgroundColor: (theme) =>
               alpha(
                 theme.palette.primary.main,
@@ -89,16 +87,16 @@ export default function SingleProduct({
             fontWeight: "medium",
             display: "flex",
             cursor: "pointer",
-            fontSize: 12,
+            fontSize: 18,
             alignItems: "center",
             "& svg": {
-              fontSize: 21,
+              fontSize: 28,
               mr: 0.5,
             },
           }}
         >
-          <AddShoppingCartIcon />
-          ADD TO CART
+          <DeleteIcon />
+          DELETE
         </Box>
       </Box>
     </Box>

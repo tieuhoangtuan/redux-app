@@ -87,9 +87,10 @@ export default function SingleProduct({
           ${price}
         </Box>
         <Box
+          style={{ color: "green" }}
           sx={{
             mt: 1.5,
-            p: 0.5,
+            p: 1.5,
             backgroundColor: (theme) =>
               alpha(
                 theme.palette.primary.main,
@@ -100,10 +101,10 @@ export default function SingleProduct({
             fontWeight: "medium",
             display: "flex",
             cursor: "pointer",
-            fontSize: 12,
+            fontSize: 18,
             alignItems: "center",
             "& svg": {
-              fontSize: 21,
+              fontSize: 28,
               mr: 0.5,
             },
           }}
