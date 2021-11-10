@@ -1,4 +1,4 @@
-import { cartConstants } from "../actions/constants";
+import { productConstants } from "../actions/constants";
 
 const initState = {
   carts: [],
@@ -9,20 +9,19 @@ const initState = {
 export default (state = initState, action) => {
   console.log(action);
   switch (action.type) {
-    case cartConstants.GET_ALL_PRODUCT_REQUEST:
+    case productConstants.GET_ALL_PRODUCT_REQUEST:
       state = {
         ...state,
         loading: true,
       };
       break;
-    case cartConstants.GET_ALL_PRODUCT_SUCCESS:
+    case productConstants.GET_ALL_PRODUCT_SUCCESS:
       state = {
         ...state,
-        _products: action.payload._products,
         loading: false,
       };
       break;
-    case cartConstants.GET_ALL_PRODUCT_FAILURE:
+    case productConstants.GET_ALL_PRODUCT_FAILURE:
       state = {
         initState,
       };
