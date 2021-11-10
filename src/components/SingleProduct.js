@@ -3,7 +3,12 @@ import Box from "@mui/material/Box";
 import { alpha } from "@mui/material/styles";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 
-export default function singleProduct() {
+export default function SingleProduct({
+  name,
+  price,
+  img,
+  description,
+}) {
   return (
     <Box
       sx={{
@@ -29,7 +34,7 @@ export default function singleProduct() {
           maxWidth: { xs: 350, md: 250 },
         }}
         alt="The house from the offer."
-        src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
+        src={`${img}`}
       />
       <Box
         sx={{
@@ -47,7 +52,7 @@ export default function singleProduct() {
           component="span"
           sx={{ fontSize: 16, mt: 1 }}
         >
-          123 Main St, Phoenix AZ
+          {name}
         </Box>
         <Box
           component="span"
@@ -56,7 +61,7 @@ export default function singleProduct() {
             fontSize: 22,
           }}
         >
-          $280,000 — $310,000
+          ${price}
         </Box>
         <Box
           sx={{
@@ -80,7 +85,7 @@ export default function singleProduct() {
           }}
         >
           <ErrorOutlineIcon />
-          CONFIDENCE SCORE 85%
+          ADD TO CART
         </Box>
       </Box>
     </Box>

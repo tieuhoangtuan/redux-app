@@ -1,7 +1,6 @@
 import { productConstants } from "../actions/constants";
 
 const initState = {
-  carts: [],
   _products: [],
   loading: false,
 };
@@ -18,6 +17,7 @@ export default (state = initState, action) => {
     case productConstants.GET_ALL_PRODUCT_SUCCESS:
       state = {
         ...state,
+        _products: action.payload,
         loading: false,
       };
       break;

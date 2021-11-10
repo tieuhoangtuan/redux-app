@@ -10,15 +10,25 @@ function Home() {
   const products = useSelector(
     (state) => state.products,
   );
-  console.log(products);
   const dispatch = useDispatch();
   useEffect(() => {
     console.log("2");
     dispatch(getAllProducts());
   }, []);
+
   return (
     <>
-      <SingleProduct />
+      {products._products.map((product) => {
+        return (
+          <SingleProduct
+            key={`${product.id}`}
+            name={`${product.title}`}
+            price={`${product.price}`}
+            description={`${product.description}`}
+            img={`${product.image}`}
+          />
+        );
+      })}
     </>
   );
 }

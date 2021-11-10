@@ -4,6 +4,6 @@ import { combineReducers } from "redux";
 import productConstants from "./productReducer";
 
 const rootReducer = combineReducers({
-  cart: productConstants,
+  products: productConstants,
 });
 export default rootReducer;
