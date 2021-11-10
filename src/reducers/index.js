@@ -1,9 +1,12 @@
 //state's stores and handle actions
 
 import { combineReducers } from "redux";
-import productConstants from "./productReducer";
+
+import cartReducer from "./cartReducer";
+import productReducer from "./productReducer";
 
 const rootReducer = combineReducers({
-  products: productConstants,
+  products: productReducer,
+  cart: cartReducer,
 });
 export default rootReducer;

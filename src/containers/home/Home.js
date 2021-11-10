@@ -5,6 +5,7 @@ import {
 } from "react-redux";
 import { getAllProducts } from "../../actions";
 import SingleProduct from "../../components/SingleProduct";
+import Box from "@mui/material/Box";
 
 function Home() {
   const products = useSelector(
@@ -12,23 +13,39 @@ function Home() {
   );
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log("2");
     dispatch(getAllProducts());
   }, []);
 
   return (
     <>
-      {products._products.map((product) => {
-        return (
-          <SingleProduct
-            key={`${product.id}`}
-            name={`${product.title}`}
-            price={`${product.price}`}
-            description={`${product.description}`}
-            img={`${product.image}`}
-          />
-        );
-      })}
+      <div
+        style={{
+          width: "100%",
+          marginTop: "24px",
+        }}
+      >
+        <Box
+          sx={{
+            display: "grid",
+            columnGap: 3,
+            rowGap: 1,
+            gridTemplateColumns: "repeat(2, 1fr)",
+          }}
+        >
+          {products._products.map((product) => {
+            return (
+              <SingleProduct
+                key={`${product.id}`}
+                name={`${product.title}`}
+                price={`${product.price}`}
+                description={`${product.description}`}
+                img={`${product.image}`}
+                id={`${product.id}`}
+              />
+            );
+          })}
+        </Box>
+      </div>
     </>
   );
 }

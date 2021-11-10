@@ -20,18 +20,7 @@ export default function SingleProduct({
   );
 
   const dispatch = useDispatch();
-  const clickHandle = (productId) => {
-    let addProduct;
-    console.log(productId);
-    console.log(products);
-    products._products.map((product) => {
-      if (product.id == productId) {
-        addProduct = product;
-      }
-    });
-    console.log(addProduct);
-    dispatch(addToCart(addProduct));
-  };
+
   return (
     <Box
       sx={{
@@ -107,7 +96,6 @@ export default function SingleProduct({
               mr: 0.5,
             },
           }}
-          onClick={clickHandle.bind(this, id)}
         >
           <AddShoppingCartIcon />
           ADD TO CART

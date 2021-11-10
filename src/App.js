@@ -5,22 +5,30 @@ import {
 } from "react-router-dom";
 import Cart from "./containers/cart/Cart";
 import Home from "./containers/home/Home";
+import Header from "./components/Layout/Header";
+import CssBaseline from "@mui/material/CssBaseline";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route
-          exact
-          path="/"
-          element={<Home />}
-        />
-        <Route
-          exact
-          path="/"
-          element={<Cart />}
-        />
-      </Routes>
+      <Header />
+      <Container>
+        <Box />
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={<Home />}
+          />
+          <Route
+            exact
+            path="/cart"
+            element={<Cart />}
+          />
+        </Routes>
+      </Container>
     </Router>
   );
 }

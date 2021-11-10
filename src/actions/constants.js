@@ -6,3 +6,8 @@ export const productConstants = {
   GET_ALL_PRODUCT_FAILURE:
     "GET_ALL_PRODUCT_FAILURE",
 };
+export const cartConstants = {
+  ADD_TO_CART_REQUEST: "ADD_TO_CART_REQUEST",
+  ADD_TO_CART_SUCCESS: "ADD_TO_CART_SUCCESS",
+  ADD_TO_CART_FAILURE: "ADD_TO_CART_FAILURE",
+};
