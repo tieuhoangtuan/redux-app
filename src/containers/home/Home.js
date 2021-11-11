@@ -3,6 +3,7 @@ import {
   useDispatch,
   useSelector,
 } from "react-redux";
+
 import { getAllProducts } from "../../actions";
 import SingleProduct from "../../components/SingleProduct";
 import Box from "@mui/material/Box";
@@ -21,7 +22,7 @@ function Home() {
       <div
         style={{
           width: "100%",
-          marginTop: "24px",
+          marginTop: "88px",
         }}
       >
         <Box
@@ -41,6 +42,7 @@ function Home() {
                 description={`${product.description}`}
                 img={`${product.image}`}
                 id={`${product.id}`}
+                type="home"
               />
             );
           })}

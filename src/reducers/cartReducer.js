@@ -6,8 +6,6 @@ const initState = {
   loading: false,
 };
 export default (state = initState, action) => {
-  console.log(action);
-
   switch (action.type) {
     case cartConstants.ADD_TO_CART_REQUEST:
       state = {
@@ -56,24 +54,6 @@ export default (state = initState, action) => {
       state = {
         ...state,
         cartCount: state.cartCount + 1,
-      };
-
-      break;
-    case cartConstants.ADD_TO_CART_FAILURE:
-      state = {
-        initState,
-      };
-      break;
-
-    case cartConstants.DELETE_PRODUCT_REQUEST:
-      state = {
-        ...state,
-        loading: true,
-      };
-      break;
-    case cartConstants.DELETE_PRODUCT_SUCCESS:
-      state = {
-        ...state,
         loading: false,
       };
 
@@ -83,10 +63,41 @@ export default (state = initState, action) => {
         initState,
       };
       break;
+    //delete
+    case cartConstants.DELETE_PRODUCT_REQUEST:
+      state = {
+        ...state,
+        loading: true,
+      };
+      break;
+    case cartConstants.DELETE_PRODUCT_SUCCESS:
+      let quantityDelete;
+      state._products.map((p) => {
+        if (p.id == action.payload) {
+          quantityDelete = p.quantity;
+        }
+      });
+
+      state = {
+        loading: false,
+        cartCount:
+          state.cartCount - quantityDelete,
+        _products: state._products.filter((p) => {
+          return p.id != action.payload;
+        }),
+      };
+
+      break;
+    case cartConstants.DELETE_PRODUCT_FAILURE:
+      state = {
+        ...state,
+        loading: false,
+      };
+      break;
 
     default:
       return state;
   }
-
+  console.log(state);
   return state;
 };

@@ -6,31 +6,38 @@ import {
   useSelector,
 } from "react-redux";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import { addToCart } from "../actions/cartActions";
-
+import {
+  addToCart,
+  deleteProduct,
+} from "../actions/cartActions";
+import DeleteIcon from "@mui/icons-material/Delete";
 export default function SingleProduct({
   name,
   price,
   img,
   description,
   id,
+  type,
+  quantity,
 }) {
   const products = useSelector(
     (state) => state.products,
   );
 
   const dispatch = useDispatch();
-  const clickHandle = (productId) => {
+  const clickAddHandle = (productId) => {
     let addProduct;
-    console.log(productId);
-    console.log(products);
+
     products._products.map((product) => {
       if (product.id == productId) {
         addProduct = product;
       }
     });
-    console.log(addProduct);
+
     dispatch(addToCart(addProduct));
+  };
+  const clickDeleteHandle = (productId) => {
+    dispatch(deleteProduct(productId));
   };
   return (
     <Box
@@ -86,33 +93,71 @@ export default function SingleProduct({
         >
           ${price}
         </Box>
-        <Box
-          style={{ color: "green" }}
-          sx={{
-            mt: 1.5,
-            p: 1.5,
-            backgroundColor: (theme) =>
-              alpha(
-                theme.palette.primary.main,
-                0.1,
-              ),
-            borderRadius: "5px",
-            color: "primary.main",
-            fontWeight: "medium",
-            display: "flex",
-            cursor: "pointer",
-            fontSize: 18,
-            alignItems: "center",
-            "& svg": {
-              fontSize: 28,
-              mr: 0.5,
-            },
-          }}
-          onClick={clickHandle.bind(this, id)}
-        >
-          <AddShoppingCartIcon />
-          ADD TO CART
-        </Box>
+        <div>{quantity}</div>
+        {type === "home" && (
+          <Box
+            style={{ color: "green" }}
+            sx={{
+              mt: 1.5,
+              p: 1.5,
+              backgroundColor: (theme) =>
+                alpha(
+                  theme.palette.primary.main,
+                  0.1,
+                ),
+              borderRadius: "5px",
+              color: "primary.main",
+              fontWeight: "medium",
+              display: "flex",
+              cursor: "pointer",
+              fontSize: 18,
+              alignItems: "center",
+              "& svg": {
+                fontSize: 28,
+                mr: 0.5,
+              },
+            }}
+            onClick={clickAddHandle.bind(
+              this,
+              id,
+            )}
+          >
+            <AddShoppingCartIcon />
+            ADD TO CART
+          </Box>
+        )}
+        {type === "cart" && (
+          <Box
+            onClick={clickDeleteHandle.bind(
+              this,
+              id,
+            )}
+            style={{ color: "red" }}
+            sx={{
+              mt: 1.5,
+              p: 1.5,
+              backgroundColor: (theme) =>
+                alpha(
+                  theme.palette.primary.main,
+                  0.1,
+                ),
+              borderRadius: "5px",
+              color: "primary.main",
+              fontWeight: "medium",
+              display: "flex",
+              cursor: "pointer",
+              fontSize: 18,
+              alignItems: "center",
+              "& svg": {
+                fontSize: 28,
+                mr: 0.5,
+              },
+            }}
+          >
+            <DeleteIcon />
+            DELETE
+          </Box>
+        )}
       </Box>
     </Box>
   );
