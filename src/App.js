@@ -5,15 +5,13 @@ import {
 } from "react-router-dom";
 import Cart from "./containers/cart/Cart";
 import Home from "./containers/home/Home";
-import Header from "./components/Layout/Header";
+
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 
 function App() {
   return (
     <Router>
-      <Header />
-
       <Container>
         <Box />
         <Routes>

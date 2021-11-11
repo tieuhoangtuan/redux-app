@@ -37,3 +37,41 @@ export const deleteProduct = (productId) => {
     }
   };
 };
+
+export const increaseProduct = (productId) => {
+  return async (dispatch) => {
+    dispatch({
+      type: cartConstants.INCREASE_PRODUCT_CART_REQUEST,
+    });
+
+    if (productId) {
+      dispatch({
+        type: cartConstants.INCREASE_PRODUCT_CART_SUCCESS,
+        payload: productId,
+      });
+    } else {
+      dispatch({
+        type: cartConstants.INCREASE_PRODUCT_CART_FAILURE,
+      });
+    }
+  };
+};
+
+export const decreaseProduct = (productId) => {
+  return async (dispatch) => {
+    dispatch({
+      type: cartConstants.DECREASE_PRODUCT_CART_REQUEST,
+    });
+
+    if (productId) {
+      dispatch({
+        type: cartConstants.DECREASE_PRODUCT_CART_SUCCESS,
+        payload: productId,
+      });
+    } else {
+      dispatch({
+        type: cartConstants.DECREASE_PRODUCT_CART_FAILURE,
+      });
+    }
+  };
+};

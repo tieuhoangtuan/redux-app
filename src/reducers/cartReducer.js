@@ -94,6 +94,63 @@ export default (state = initState, action) => {
         loading: false,
       };
       break;
+    //increase
+
+    case cartConstants.INCREASE_PRODUCT_CART_REQUEST:
+      state = {
+        ...state,
+        loading: true,
+      };
+      break;
+    case cartConstants.INCREASE_PRODUCT_CART_SUCCESS:
+      state._products.map((p) => {
+        if (p.id == action.payload) {
+          p.quantity++;
+        }
+      });
+
+      state = {
+        ...state,
+        loading: false,
+        cartCount: state.cartCount + 1,
+      };
+
+      break;
+    case cartConstants.INCREASE_PRODUCT_CART_FAILURE:
+      state = {
+        ...state,
+        loading: false,
+      };
+      break;
+
+    //decrease
+
+    case cartConstants.DECREASE_PRODUCT_CART_REQUEST:
+      state = {
+        ...state,
+        loading: true,
+      };
+      break;
+    case cartConstants.DECREASE_PRODUCT_CART_SUCCESS:
+      state._products.map((p) => {
+        if (p.id == action.payload) {
+          p.quantity--;
+        }
+      });
+
+      state = {
+        ...state,
+        loading: false,
+        cartCount: state.cartCount - 1,
+      };
+
+      break;
+    case cartConstants.DECREASE_PRODUCT_CART_FAILURE:
+      state = {
+        ...state,
+        loading: false,
+      };
+      break;
 
     default:
       return state;

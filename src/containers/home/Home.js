@@ -3,7 +3,7 @@ import {
   useDispatch,
   useSelector,
 } from "react-redux";
-
+import Header from "../../components/Layout/Header";
 import { getAllProducts } from "../../actions";
 import SingleProduct from "../../components/SingleProduct";
 import Box from "@mui/material/Box";
@@ -19,6 +19,7 @@ function Home() {
 
   return (
     <>
+      <Header />
       <div
         style={{
           width: "100%",

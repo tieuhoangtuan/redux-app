@@ -1,16 +1,26 @@
-import React, { useState } from "react";
+import React, {
+  useState,
+  useEffect,
+} from "react";
 import Box from "@mui/material/Box";
 import { alpha } from "@mui/material/styles";
+import IconButton from "@mui/material/IconButton";
 import {
   useDispatch,
   useSelector,
 } from "react-redux";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import {
   addToCart,
   deleteProduct,
+  increaseProduct,
+  decreaseProduct,
 } from "../actions/cartActions";
 import DeleteIcon from "@mui/icons-material/Delete";
+import TextField from "@mui/material/TextField";
+
 export default function SingleProduct({
   name,
   price,
@@ -18,12 +28,16 @@ export default function SingleProduct({
   description,
   id,
   type,
-  quantity,
+  quantity = 1,
 }) {
   const products = useSelector(
     (state) => state.products,
   );
-
+  const [productQuantity, setProductQuantity] =
+    useState(quantity);
+  useEffect(() => {
+    setProductQuantity(quantity);
+  }, [quantity]);
   const dispatch = useDispatch();
   const clickAddHandle = (productId) => {
     let addProduct;
@@ -38,6 +52,12 @@ export default function SingleProduct({
   };
   const clickDeleteHandle = (productId) => {
     dispatch(deleteProduct(productId));
+  };
+  const increaseHandle = (productId) => {
+    dispatch(increaseProduct(productId));
+  };
+  const decreaseHandle = (productId) => {
+    dispatch(decreaseProduct(productId));
   };
   return (
     <Box
@@ -91,9 +111,9 @@ export default function SingleProduct({
             fontSize: 22,
           }}
         >
-          ${price}
+          ${price * quantity}
         </Box>
-        <div>{quantity}</div>
+
         {type === "home" && (
           <Box
             style={{ color: "green" }}
@@ -127,36 +147,92 @@ export default function SingleProduct({
           </Box>
         )}
         {type === "cart" && (
-          <Box
-            onClick={clickDeleteHandle.bind(
-              this,
-              id,
-            )}
-            style={{ color: "red" }}
-            sx={{
-              mt: 1.5,
-              p: 1.5,
-              backgroundColor: (theme) =>
-                alpha(
-                  theme.palette.primary.main,
-                  0.1,
-                ),
-              borderRadius: "5px",
-              color: "primary.main",
-              fontWeight: "medium",
-              display: "flex",
-              cursor: "pointer",
-              fontSize: 18,
-              alignItems: "center",
-              "& svg": {
-                fontSize: 28,
-                mr: 0.5,
-              },
-            }}
-          >
-            <DeleteIcon />
-            DELETE
-          </Box>
+          <>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "flex-end",
+                margin: "10px 0",
+              }}
+            >
+              <IconButton
+                onClick={increaseHandle.bind(
+                  this,
+                  id,
+                )}
+              >
+                <AddCircleOutlineIcon />
+              </IconButton>
+
+              <TextField
+                value={productQuantity}
+                onChange={(e) => {
+                  setProductQuantity(
+                    e.target.value,
+                  );
+                }}
+                id="standard-basic"
+                label="Quantity"
+                variant="standard"
+                style={{
+                  width: "25%",
+                  textAlign: "center",
+                }}
+              />
+              {quantity == 1 ? (
+                <IconButton
+                  disabled
+                  onClick={decreaseHandle.bind(
+                    this,
+                    id,
+                  )}
+                >
+                  <RemoveCircleOutlineIcon />
+                </IconButton>
+              ) : (
+                <IconButton
+                  onClick={decreaseHandle.bind(
+                    this,
+                    id,
+                  )}
+                >
+                  <RemoveCircleOutlineIcon />
+                </IconButton>
+              )}
+            </div>
+
+            <Box
+              onClick={clickDeleteHandle.bind(
+                this,
+                id,
+              )}
+              style={{ color: "red" }}
+              sx={{
+                mt: 1.5,
+                p: 1.5,
+                backgroundColor: (theme) =>
+                  alpha(
+                    theme.palette.primary.main,
+                    0.1,
+                  ),
+                borderRadius: "5px",
+                color: "primary.main",
+                fontWeight: "medium",
+                display: "flex",
+                cursor: "pointer",
+                fontSize: 18,
+                alignItems: "center",
+                "& svg": {
+                  fontSize: 28,
+                  mr: 0.5,
+                },
+              }}
+            >
+              <DeleteIcon />
+              DELETE
+            </Box>
+          </>
         )}
       </Box>
     </Box>
