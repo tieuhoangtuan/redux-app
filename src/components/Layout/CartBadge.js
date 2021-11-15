@@ -25,7 +25,9 @@ export default function CartBadge() {
           badgeContent={cart.cartCount}
           color="secondary"
         >
-          <ShoppingCartIcon />
+          <ShoppingCartIcon
+            style={{ color: "black" }}
+          />
         </StyledBadge>
       </IconButton>
     </Tooltip>

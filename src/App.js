@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 import Cart from "./containers/cart/Cart";
 import Home from "./containers/home/Home";
-
+import TeamList from "./containers/list/TeamList";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 
@@ -25,6 +25,12 @@ function App() {
             exact
             path="/cart"
             element={<Cart />}
+          />
+
+          <Route
+            exact
+            path="/list"
+            element={<TeamList />}
           />
         </Routes>
       </Container>

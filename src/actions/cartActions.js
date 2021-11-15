@@ -75,3 +75,14 @@ export const decreaseProduct = (productId) => {
     }
   };
 };
+
+export const deleteAllProducts = () => {
+  return async (dispatch) => {
+    dispatch({
+      type: cartConstants.DELETE_ALL_PRODUCTS_REQUEST,
+    });
+    dispatch({
+      type: cartConstants.DELETE_ALL_PRODUCTS_REQUEST_SUCCESS,
+    });
+  };
+};

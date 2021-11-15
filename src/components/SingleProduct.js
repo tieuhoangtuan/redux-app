@@ -156,30 +156,6 @@ export default function SingleProduct({
                 margin: "10px 0",
               }}
             >
-              <IconButton
-                onClick={increaseHandle.bind(
-                  this,
-                  id,
-                )}
-              >
-                <AddCircleOutlineIcon />
-              </IconButton>
-
-              <TextField
-                value={productQuantity}
-                onChange={(e) => {
-                  setProductQuantity(
-                    e.target.value,
-                  );
-                }}
-                id="standard-basic"
-                label="Quantity"
-                variant="standard"
-                style={{
-                  width: "25%",
-                  textAlign: "center",
-                }}
-              />
               {quantity == 1 ? (
                 <IconButton
                   disabled
@@ -200,6 +176,30 @@ export default function SingleProduct({
                   <RemoveCircleOutlineIcon />
                 </IconButton>
               )}
+              <TextField
+                value={productQuantity}
+                onChange={(e) => {
+                  setProductQuantity(
+                    e.target.value,
+                  );
+                }}
+                id="standard-basic"
+                label="Quantity"
+                variant="standard"
+                style={{
+                  width: "25%",
+                  textAlign: "center",
+                }}
+              />
+
+              <IconButton
+                onClick={increaseHandle.bind(
+                  this,
+                  id,
+                )}
+              >
+                <AddCircleOutlineIcon />
+              </IconButton>
             </div>
 
             <Box

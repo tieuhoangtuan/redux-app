@@ -152,6 +152,13 @@ export default (state = initState, action) => {
       };
       break;
 
+    case cartConstants.DELETE_ALL_PRODUCTS_REQUEST_SUCCESS:
+      state = {
+        _products: [],
+        cartCount: 0,
+        loading: false,
+      };
+
     default:
       return state;
   }
