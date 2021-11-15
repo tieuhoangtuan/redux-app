@@ -8,7 +8,7 @@ function Cart() {
   const cart = useSelector((state) => state.cart);
   return (
     <>
-      <Header />
+      <Header type="cart" />
       <div
         style={{
           width: "100%",

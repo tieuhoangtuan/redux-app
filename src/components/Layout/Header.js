@@ -23,13 +23,16 @@ const StyledBadge = styled(Badge)(
     },
   }),
 );
-export default function Header() {
+export default function Header({ type }) {
   const cart = useSelector((state) => state.cart);
   let price = 0;
   cart._products.map((product) => {
     price =
       price + product.quantity * product.price;
   });
+  if (type == "list") {
+  }
+  console.log(type);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
@@ -49,7 +52,12 @@ export default function Header() {
               <Tooltip title="Home" arrow>
                 <IconButton aria-label="home">
                   <HomeIcon
-                    style={{ color: "black" }}
+                    style={{
+                      color:
+                        type == "home"
+                          ? "tomato"
+                          : "black",
+                    }}
                   />
                 </IconButton>
               </Tooltip>
@@ -68,7 +76,12 @@ export default function Header() {
                     color="secondary"
                   >
                     <GroupIcon
-                      style={{ color: "black" }}
+                      style={{
+                        color:
+                          type == "list"
+                            ? "tomato"
+                            : "black",
+                      }}
                     />
                   </StyledBadge>
                 </IconButton>
@@ -86,7 +99,7 @@ export default function Header() {
           </Typography>
 
           <Link to="/cart">
-            <CartBadge />
+            <CartBadge type={type} />
           </Link>
         </Toolbar>
       </AppBar>

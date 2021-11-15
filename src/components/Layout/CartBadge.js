@@ -16,7 +16,7 @@ const StyledBadge = styled(Badge)(
   }),
 );
 
-export default function CartBadge() {
+export default function CartBadge({ type }) {
   const cart = useSelector((state) => state.cart);
   return (
     <Tooltip title="Cart" arrow>
@@ -26,7 +26,12 @@ export default function CartBadge() {
           color="secondary"
         >
           <ShoppingCartIcon
-            style={{ color: "black" }}
+            style={{
+              color:
+                type == "cart"
+                  ? "tomato"
+                  : "black",
+            }}
           />
         </StyledBadge>
       </IconButton>

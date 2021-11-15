@@ -20,7 +20,7 @@ function Home() {
 
   return (
     <>
-      <Header />
+      <Header type="home" />
 
       <div
         style={{

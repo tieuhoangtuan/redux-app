@@ -51,14 +51,18 @@ function TeamList() {
       4501104255,
       "laptopdienthoai1@gmail.com",
     ),
-    createData("Ice cream sandwich", 237, 9.0),
+    createData(
+      "Nguyễn Tiến Vương",
+      4301104209,
+      "NaN",
+    ),
     createData("Eclair", 262, 16.0),
     createData("Cupcake", 305, 3.7),
     createData("Gingerbread", 356, 16.0),
   ];
   return (
     <>
-      <Header />
+      <Header type="list" />
       <div
         style={{
           width: "100%",
