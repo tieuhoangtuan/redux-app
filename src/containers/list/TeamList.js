@@ -51,7 +51,7 @@ function TeamList() {
       4501104255,
       "laptopdienthoai1@gmail.com",
     ),
-    createData("Ice cream sandwich", 237, 9.0),
+    createData("Tiêu Hoàng Tuấn",4501104268,"tieuhoangtuan822001@gmail.com"),
     createData("Eclair", 262, 16.0),
     createData("Cupcake", 305, 3.7),
     createData("Gingerbread", 356, 16.0),
